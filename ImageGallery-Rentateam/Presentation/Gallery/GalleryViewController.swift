@@ -16,6 +16,8 @@ class GalleryViewController: UIViewController {
         
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         
+        collection.register(ImageCollectionViewCell.self,
+                            forCellWithReuseIdentifier: ImageCollectionViewCell.reuseIdentifier)
         collection.showsHorizontalScrollIndicator = false
         collection.showsVerticalScrollIndicator = false
         collection.backgroundColor = .white
@@ -38,8 +40,8 @@ class GalleryViewController: UIViewController {
             switch response {
             case .success(let json):
                 do {
-                    let jsonData = try JSONSerialization.jsonObject(with: json, options: []) as! [[String : Any]]
-                    print("JSON: \(jsonData)")
+                    let galleryItems = try JSONDecoder().decode([GalleryItem].self, from: json)
+                    print("Items: \(galleryItems)")
                 } catch let error {
                     print("Error: \(error.localizedDescription)")
                 }

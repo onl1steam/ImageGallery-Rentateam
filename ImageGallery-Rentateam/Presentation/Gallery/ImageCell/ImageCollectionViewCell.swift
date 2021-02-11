@@ -8,5 +8,5 @@
 import UIKit
 
 class ImageCollectionViewCell: UICollectionViewCell {
-    
+    static let reuseIdentifier = String(describing: ImageCollectionViewCell.self)
 }

@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		926B0D0A25D55C4100951FB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D0925D55C4100951FB9 /* AppDelegate.swift */; };
 		926B0D0C25D55C4100951FB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D0B25D55C4100951FB9 /* SceneDelegate.swift */; };
-		926B0D0E25D55C4100951FB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D0D25D55C4100951FB9 /* ViewController.swift */; };
-		926B0D1125D55C4100951FB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926B0D0F25D55C4100951FB9 /* Main.storyboard */; };
 		926B0D1325D55C4300951FB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 926B0D1225D55C4300951FB9 /* Assets.xcassets */; };
 		926B0D1625D55C4300951FB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926B0D1425D55C4300951FB9 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -19,8 +17,6 @@
 		926B0D0625D55C4100951FB9 /* ImageGallery-Rentateam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ImageGallery-Rentateam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		926B0D0925D55C4100951FB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		926B0D0B25D55C4100951FB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		926B0D0D25D55C4100951FB9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		926B0D1025D55C4100951FB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		926B0D1225D55C4300951FB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		926B0D1525D55C4300951FB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		926B0D1725D55C4300951FB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,15 +52,21 @@
 		926B0D0825D55C4100951FB9 /* ImageGallery-Rentateam */ = {
 			isa = PBXGroup;
 			children = (
+				926B0D1F25D560CA00951FB9 /* Helpers */,
+				926B0D1225D55C4300951FB9 /* Assets.xcassets */,
+			);
+			path = "ImageGallery-Rentateam";
+			sourceTree = "<group>";
+		};
+		926B0D1F25D560CA00951FB9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
 				926B0D0925D55C4100951FB9 /* AppDelegate.swift */,
 				926B0D0B25D55C4100951FB9 /* SceneDelegate.swift */,
-				926B0D0D25D55C4100951FB9 /* ViewController.swift */,
-				926B0D0F25D55C4100951FB9 /* Main.storyboard */,
-				926B0D1225D55C4300951FB9 /* Assets.xcassets */,
 				926B0D1425D55C4300951FB9 /* LaunchScreen.storyboard */,
 				926B0D1725D55C4300951FB9 /* Info.plist */,
 			);
-			path = "ImageGallery-Rentateam";
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +128,6 @@
 			files = (
 				926B0D1625D55C4300951FB9 /* LaunchScreen.storyboard in Resources */,
 				926B0D1325D55C4300951FB9 /* Assets.xcassets in Resources */,
-				926B0D1125D55C4100951FB9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +138,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				926B0D0E25D55C4100951FB9 /* ViewController.swift in Sources */,
 				926B0D0A25D55C4100951FB9 /* AppDelegate.swift in Sources */,
 				926B0D0C25D55C4100951FB9 /* SceneDelegate.swift in Sources */,
 			);
@@ -146,14 +146,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		926B0D0F25D55C4100951FB9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				926B0D1025D55C4100951FB9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		926B0D1425D55C4300951FB9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -288,7 +280,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7UHA847YA4;
-				INFOPLIST_FILE = "ImageGallery-Rentateam/Info.plist";
+				INFOPLIST_FILE = "ImageGallery-Rentateam/Helpers/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +299,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7UHA847YA4;
-				INFOPLIST_FILE = "ImageGallery-Rentateam/Info.plist";
+				INFOPLIST_FILE = "ImageGallery-Rentateam/Helpers/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

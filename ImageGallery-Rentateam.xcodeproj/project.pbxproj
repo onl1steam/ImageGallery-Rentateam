@@ -16,8 +16,10 @@
 		926B0D3725D5695D00951FB9 /* ImageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D3625D5695D00951FB9 /* ImageDetailsViewController.swift */; };
 		926B0D4025D56AF400951FB9 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D3F25D56AF400951FB9 /* ImageService.swift */; };
 		926B0D4325D56B2800951FB9 /* GalleryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D4225D56B2800951FB9 /* GalleryService.swift */; };
-		926B0D4625D593B300951FB9 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D4525D593B300951FB9 /* GalleryItem.swift */; };
+		926B0D4625D593B300951FB9 /* GalleryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D4525D593B300951FB9 /* GalleryResponse.swift */; };
 		926B0D4925D599B700951FB9 /* GalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D4825D599B700951FB9 /* GalleryPresenter.swift */; };
+		926B0D4D25D69A7E00951FB9 /* APISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D4C25D69A7E00951FB9 /* APISettings.swift */; };
+		926B0D5225D69B2300951FB9 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D5125D69B2300951FB9 /* GalleryItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +34,10 @@
 		926B0D3625D5695D00951FB9 /* ImageDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailsViewController.swift; sourceTree = "<group>"; };
 		926B0D3F25D56AF400951FB9 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		926B0D4225D56B2800951FB9 /* GalleryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryService.swift; sourceTree = "<group>"; };
-		926B0D4525D593B300951FB9 /* GalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItem.swift; sourceTree = "<group>"; };
+		926B0D4525D593B300951FB9 /* GalleryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryResponse.swift; sourceTree = "<group>"; };
 		926B0D4825D599B700951FB9 /* GalleryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPresenter.swift; sourceTree = "<group>"; };
+		926B0D4C25D69A7E00951FB9 /* APISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISettings.swift; sourceTree = "<group>"; };
+		926B0D5125D69B2300951FB9 /* GalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 		926B0D2525D5661800951FB9 /* Business Logic */ = {
 			isa = PBXGroup;
 			children = (
+				926B0D4B25D69A6F00951FB9 /* Helpers */,
 				926B0D2A25D5666A00951FB9 /* Models */,
 				926B0D2925D5664A00951FB9 /* Services */,
 			);
@@ -133,7 +138,8 @@
 		926B0D2A25D5666A00951FB9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				926B0D4525D593B300951FB9 /* GalleryItem.swift */,
+				926B0D4525D593B300951FB9 /* GalleryResponse.swift */,
+				926B0D5125D69B2300951FB9 /* GalleryItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -144,6 +150,14 @@
 				926B0D3125D5693F00951FB9 /* ImageCollectionViewCell.swift */,
 			);
 			path = ImageCell;
+			sourceTree = "<group>";
+		};
+		926B0D4B25D69A6F00951FB9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				926B0D4C25D69A7E00951FB9 /* APISettings.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,10 +230,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				926B0D2E25D566F000951FB9 /* GalleryViewController.swift in Sources */,
+				926B0D4D25D69A7E00951FB9 /* APISettings.swift in Sources */,
 				926B0D0A25D55C4100951FB9 /* AppDelegate.swift in Sources */,
 				926B0D3225D5693F00951FB9 /* ImageCollectionViewCell.swift in Sources */,
-				926B0D4625D593B300951FB9 /* GalleryItem.swift in Sources */,
+				926B0D4625D593B300951FB9 /* GalleryResponse.swift in Sources */,
 				926B0D4325D56B2800951FB9 /* GalleryService.swift in Sources */,
+				926B0D5225D69B2300951FB9 /* GalleryItem.swift in Sources */,
 				926B0D0C25D55C4100951FB9 /* SceneDelegate.swift in Sources */,
 				926B0D3725D5695D00951FB9 /* ImageDetailsViewController.swift in Sources */,
 				926B0D4925D599B700951FB9 /* GalleryPresenter.swift in Sources */,

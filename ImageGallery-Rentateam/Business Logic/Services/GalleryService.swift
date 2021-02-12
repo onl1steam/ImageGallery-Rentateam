@@ -8,7 +8,7 @@
 import Foundation
 
 protocol GalleryServiceProtocol {
-    func fetchGallery(urlString: String, completion: @escaping (Result<Data, Error>) -> Void)
+    func fetchGallery(page: Int, imagesPerPage: Int, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 final class GalleryService: GalleryServiceProtocol {
@@ -20,8 +20,9 @@ final class GalleryService: GalleryServiceProtocol {
     
     // MARK: - GalleryServiceProtocol Realization
     
-    func fetchGallery(urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
-        guard let url = URL(string: urlString) else { return }
+    func fetchGallery(page: Int, imagesPerPage: Int, completion: @escaping (Result<Data, Error>) -> Void) {
+        guard let url = makeUrl(page: page, imagesPerPage: imagesPerPage) else { return }
+        print(url.absoluteString)
         dataTask = session.dataTask(with: url) { [weak self] data, response, error in
             defer {
                 self?.dataTask = nil
@@ -41,5 +42,19 @@ final class GalleryService: GalleryServiceProtocol {
             }
         }
         dataTask?.resume()
+    }
+    
+    private func makeUrl(page: Int, imagesPerPage: Int) -> URL? {
+        let token = APISettings.apiKey
+        var components = URLComponents()
+        components.scheme = APISettings.scheme
+        components.host = APISettings.host
+        components.path = APISettings.path
+        components.queryItems = [
+            URLQueryItem(name: "client_id", value: token),
+            URLQueryItem(name: "page", value: "\(page)"),
+            URLQueryItem(name: "per_page", value: "\(imagesPerPage)")
+        ]
+        return components.url
     }
 }

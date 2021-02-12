@@ -27,7 +27,7 @@ class GalleryViewController: UIViewController {
     
     private let galleryService: GalleryServiceProtocol
     private let imageService: ImageServiceProtocol
-    private var data: [GalleryItem] = []
+    private var data: [GalleryResponse] = []
     
     init(galleryService: GalleryServiceProtocol = GalleryService(),
          imageService: ImageServiceProtocol = ImageService()) {
@@ -48,12 +48,11 @@ class GalleryViewController: UIViewController {
         collectionView.dataSource = self
         
         setupCollectionViewPosition()
-        let urlString = "https://api.unsplash.com/photos/?client_id=6g-UBx5WMaXIWFxJVdVTdZ0XjOJbyflcYFsAUFlkRXs&page=1"
-        galleryService.fetchGallery(urlString: urlString) { [weak self] response in
+        galleryService.fetchGallery(page: 1, imagesPerPage: 10) { [weak self] response in
             switch response {
             case .success(let json):
                 do {
-                    self?.data = try JSONDecoder().decode([GalleryItem].self, from: json)
+                    self?.data = try JSONDecoder().decode([GalleryResponse].self, from: json)
                     self?.collectionView.reloadData()
                 } catch let error {
                     print("Error: \(error.localizedDescription)")

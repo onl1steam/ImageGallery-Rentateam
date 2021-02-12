@@ -18,14 +18,23 @@ final class GalleryPresenter: GalleryPresenterProtocol {
     
     private let galleryService: GalleryServiceProtocol
     private let imageService: ImageServiceProtocol
-    private var data: [GalleryResponse]
+    private let galleryStoreService: GalleryStoreServiceProtocol
+    private let imageCacheService: ImageCacheServiceProtocol
+    private var data: [GalleryItem]
+    
+    private var page: Int = 1
+    private var itemsPerPage: Int = 20
     
     weak var galleryViewControlller: GalleryViewControllerProtocol?
     
     init(galleryService: GalleryServiceProtocol = GalleryService(),
+         galleryStoreService: GalleryStoreServiceProtocol = GalleryStoreService(),
+         imageCacheService: ImageCacheServiceProtocol = ImageCacheService(),
          imageService: ImageServiceProtocol = ImageService()) {
         self.galleryService = galleryService
         self.imageService = imageService
+        self.galleryStoreService = galleryStoreService
+        self.imageCacheService = imageCacheService
         self.data = []
     }
     
@@ -34,17 +43,26 @@ final class GalleryPresenter: GalleryPresenterProtocol {
     }
     
     func fetchGalleryItems() {
-        galleryService.fetchGallery(page: 1, imagesPerPage: 10) { [weak self] response in
+        galleryService.fetchGallery(page: page, imagesPerPage: itemsPerPage) { [unowned self] response in
+            self.page += 1
             switch response {
             case .success(let json):
                 do {
-                    self?.data = try JSONDecoder().decode([GalleryResponse].self, from: json)
-                    self?.galleryViewControlller?.reloadCollection()
+                    let galleryData = try JSONDecoder().decode([GalleryResponse].self, from: json)
+                    galleryData.forEach { response in
+                        let galleryItem = GalleryItem(galleryResponse: response)
+                        self.data.append(galleryItem)
+                    }
+                    self.galleryViewControlller?.reloadCollection()
+                    self.galleryStoreService.saveGallery(self.data)
                 } catch let error {
                     print("Error: \(error.localizedDescription)")
                 }
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
+            case .failure:
+                self.galleryStoreService.getGallery { gallery in
+                    self.data = gallery
+                    self.galleryViewControlller?.reloadCollection()
+                }
             }
         }
     }
@@ -55,17 +73,22 @@ final class GalleryPresenter: GalleryPresenterProtocol {
     
     func setupCellInfo(cell: ImageCollectionViewCellProtocol, row: Int) {
         cell.setLabel(data[row].imageDescription)
-        let dataTask = imageService.fetchImage(urlString: data[row].urls.regular, completion: { response in
-                switch response {
-                case .success(let data):
-                    cell.setImage(imageData: data)
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        print("Image loading failed: \(error.localizedDescription)")
+        if let imageData = imageCacheService.loadImage(key: data[row].id) {
+            cell.setImage(imageData: imageData)
+        } else {
+            let dataTask = imageService.fetchImage(urlString: data[row].imageUrl, completion: { [unowned self] response in
+                    switch response {
+                    case .success(let data):
+                        self.imageCacheService.cacheImage(key: self.data[row].id, imageData: data)
+                        cell.setImage(imageData: data)
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            print("Image loading failed: \(error.localizedDescription)")
+                        }
                     }
                 }
-            }
-        )
-        cell.setDataTask(dataTask)
+            )
+            cell.setDataTask(dataTask)
+        }
     }
 }

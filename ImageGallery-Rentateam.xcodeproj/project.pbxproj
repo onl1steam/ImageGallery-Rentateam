@@ -20,6 +20,10 @@
 		926B0D4925D599B700951FB9 /* GalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D4825D599B700951FB9 /* GalleryPresenter.swift */; };
 		926B0D4D25D69A7E00951FB9 /* APISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D4C25D69A7E00951FB9 /* APISettings.swift */; };
 		926B0D5225D69B2300951FB9 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D5125D69B2300951FB9 /* GalleryItem.swift */; };
+		926B0D5625D6B01900951FB9 /* GalleryStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D5525D6B01900951FB9 /* GalleryStoreService.swift */; };
+		926B0D5925D6B52A00951FB9 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D5825D6B52A00951FB9 /* ImageCacheService.swift */; };
+		926B0D5E25D6C89D00951FB9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D5C25D6C89C00951FB9 /* CollectionViewCell.swift */; };
+		926B0D5F25D6C89D00951FB9 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 926B0D5D25D6C89C00951FB9 /* CollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		926B0D4825D599B700951FB9 /* GalleryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPresenter.swift; sourceTree = "<group>"; };
 		926B0D4C25D69A7E00951FB9 /* APISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISettings.swift; sourceTree = "<group>"; };
 		926B0D5125D69B2300951FB9 /* GalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItem.swift; sourceTree = "<group>"; };
+		926B0D5525D6B01900951FB9 /* GalleryStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryStoreService.swift; sourceTree = "<group>"; };
+		926B0D5825D6B52A00951FB9 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
+		926B0D5C25D6C89C00951FB9 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		926B0D5D25D6C89C00951FB9 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +139,8 @@
 			children = (
 				926B0D3F25D56AF400951FB9 /* ImageService.swift */,
 				926B0D4225D56B2800951FB9 /* GalleryService.swift */,
+				926B0D5525D6B01900951FB9 /* GalleryStoreService.swift */,
+				926B0D5825D6B52A00951FB9 /* ImageCacheService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -148,6 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				926B0D3125D5693F00951FB9 /* ImageCollectionViewCell.swift */,
+				926B0D5C25D6C89C00951FB9 /* CollectionViewCell.swift */,
+				926B0D5D25D6C89C00951FB9 /* CollectionViewCell.xib */,
 			);
 			path = ImageCell;
 			sourceTree = "<group>";
@@ -219,6 +231,7 @@
 			files = (
 				926B0D1625D55C4300951FB9 /* LaunchScreen.storyboard in Resources */,
 				926B0D1325D55C4300951FB9 /* Assets.xcassets in Resources */,
+				926B0D5F25D6C89D00951FB9 /* CollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,13 +243,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				926B0D2E25D566F000951FB9 /* GalleryViewController.swift in Sources */,
+				926B0D5925D6B52A00951FB9 /* ImageCacheService.swift in Sources */,
 				926B0D4D25D69A7E00951FB9 /* APISettings.swift in Sources */,
 				926B0D0A25D55C4100951FB9 /* AppDelegate.swift in Sources */,
 				926B0D3225D5693F00951FB9 /* ImageCollectionViewCell.swift in Sources */,
 				926B0D4625D593B300951FB9 /* GalleryResponse.swift in Sources */,
 				926B0D4325D56B2800951FB9 /* GalleryService.swift in Sources */,
+				926B0D5625D6B01900951FB9 /* GalleryStoreService.swift in Sources */,
 				926B0D5225D69B2300951FB9 /* GalleryItem.swift in Sources */,
 				926B0D0C25D55C4100951FB9 /* SceneDelegate.swift in Sources */,
+				926B0D5E25D6C89D00951FB9 /* CollectionViewCell.swift in Sources */,
 				926B0D3725D5695D00951FB9 /* ImageDetailsViewController.swift in Sources */,
 				926B0D4925D599B700951FB9 /* GalleryPresenter.swift in Sources */,
 				926B0D4025D56AF400951FB9 /* ImageService.swift in Sources */,

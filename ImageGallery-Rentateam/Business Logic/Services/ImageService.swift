@@ -15,7 +15,7 @@ final class ImageService: ImageServiceProtocol {
     
     // MARK: - Public properties
     
-    let session = URLSession(configuration: .ephemeral)
+    let session = URLSession(configuration: .default)
     var dataTask: URLSessionDataTask?
     
     // MARK: - ImageServiceProtocol Realization

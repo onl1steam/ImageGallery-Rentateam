@@ -71,9 +71,7 @@ extension GalleryViewController: GalleryViewControllerProtocol {
     }
 }
 
-extension GalleryViewController: UICollectionViewDelegate {}
-
-extension GalleryViewController: UICollectionViewDataSource {
+extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return galleryPresenter.getImagesNumber()

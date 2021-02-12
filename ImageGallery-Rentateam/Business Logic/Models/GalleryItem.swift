@@ -7,7 +7,15 @@
 
 import Foundation
 
-struct GalleryItem {
+struct GalleryItem: Codable {
+    
+    init(galleryResponse: GalleryResponse) {
+        id = galleryResponse.id
+        imageDescription = galleryResponse.imageDescription
+        imageUrl = galleryResponse.urls.regular
+        loadingDate = Date()
+    }
+    
     let id: String
     let imageDescription: String
     let imageUrl: String

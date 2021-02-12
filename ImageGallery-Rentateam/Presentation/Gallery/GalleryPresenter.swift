@@ -12,6 +12,7 @@ protocol GalleryPresenterProtocol {
     func setupCellInfo(cell: ImageCollectionViewCellProtocol, row: Int)
     func fetchGalleryItems()
     func setDelegate(_ delegate: GalleryViewControllerProtocol)
+    func getItem(in row: Int) -> GalleryItem
 }
 
 final class GalleryPresenter: GalleryPresenterProtocol {
@@ -90,5 +91,9 @@ final class GalleryPresenter: GalleryPresenterProtocol {
             )
             cell.setDataTask(dataTask)
         }
+    }
+    
+    func getItem(in row: Int) -> GalleryItem {
+        return data[row]
     }
 }

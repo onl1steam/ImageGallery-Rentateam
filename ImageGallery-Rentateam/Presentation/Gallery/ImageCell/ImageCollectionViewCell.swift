@@ -75,7 +75,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
             imageView.heightAnchor.constraint(equalToConstant: CellConstraints.imageViewHeight),
             imageView.widthAnchor.constraint(equalToConstant: CellConstraints.imageViewWidth),
             imageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-            imageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor)
+            imageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor)
         ])
     }
     
@@ -84,7 +85,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
             titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
         ])
     }

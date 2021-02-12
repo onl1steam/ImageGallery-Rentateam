@@ -20,8 +20,7 @@ final class GalleryViewController: UIViewController {
         
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         
-        collection.register(ImageCollectionViewCell.self,
-                            forCellWithReuseIdentifier: ImageCollectionViewCell.reuseIdentifier)
+        collection.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.reuseIdentifier)
         collection.showsHorizontalScrollIndicator = false
         collection.showsVerticalScrollIndicator = false
         collection.backgroundColor = .white
@@ -84,5 +83,11 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         }
         galleryPresenter.setupCellInfo(cell: cell, row: indexPath.row)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let galleryItem = galleryPresenter.getItem(in: indexPath.row)
+        let detailsViewController = ImageDetailsViewController(galleryItem: galleryItem)
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }

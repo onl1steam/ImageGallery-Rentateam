@@ -16,7 +16,7 @@ final class GalleryStoreService: GalleryStoreServiceProtocol {
     
     func saveGallery(_ gallery: [GalleryItem]) {
         DispatchQueue.global().async {
-            UserDefaults.standard.set(try? PropertyListEncoder().encode(gallery), forKey:"galleryList")
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(gallery), forKey: "galleryList")
         }
     }
     

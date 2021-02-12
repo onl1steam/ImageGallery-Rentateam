@@ -26,7 +26,7 @@ final class GalleryPresenter: GalleryPresenterProtocol {
     private var data: [GalleryItem]
     
     private var page: Int = 1
-    private var itemsPerPage: Int = 20
+    private var itemsPerPage: Int = 10
     
     weak var galleryViewControlller: GalleryViewControllerProtocol?
     
@@ -71,6 +71,8 @@ final class GalleryPresenter: GalleryPresenterProtocol {
                 self.galleryStoreService.getGallery { gallery in
                     self.data = gallery
                     self.galleryViewControlller?.reloadCollection()
+                    self.galleryViewControlller?.showErrorMessage(title: "Ошибка загрузки",
+                                                             description: "Возникла ошбика при загрузке данных.\nПроверьте соединение с сетью.")
                 }
             }
         }
@@ -94,9 +96,10 @@ final class GalleryPresenter: GalleryPresenterProtocol {
                         self.imageCacheService.cacheImage(key: self.data[row].id, image: data)
                         self.imageStoreService.saveImage(key: self.data[row].id, imageData: data)
                         cell.setImage(imageData: data)
-                    case .failure(let error):
+                    case .failure:
                         DispatchQueue.main.async {
-                            print("Image loading failed: \(error.localizedDescription)")
+                            galleryViewControlller?.showErrorMessage(title: "Ошибка загрузки",
+                                                                     description: "Возникла ошбика при загрузке данных.\nПроверьте соединение с сетью.")
                         }
                     }
                 }

@@ -9,6 +9,7 @@ import UIKit
 
 protocol GalleryViewControllerProtocol: NSObject {
     func reloadCollection()
+    func showErrorMessage(title: String, description: String)
 }
 
 final class GalleryViewController: UIViewController {
@@ -28,6 +29,7 @@ final class GalleryViewController: UIViewController {
         return collection
     }()
     
+    private var isFirstLoaded: Bool = false
     private let galleryPresenter: GalleryPresenterProtocol
     
     init(galleryPresenter: GalleryPresenterProtocol = GalleryPresenter()) {
@@ -67,6 +69,13 @@ final class GalleryViewController: UIViewController {
 extension GalleryViewController: GalleryViewControllerProtocol {
     func reloadCollection() {
         collectionView.reloadData()
+        isFirstLoaded = true
+    }
+    
+    func showErrorMessage(title: String, description: String) {
+        let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -94,8 +103,9 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row + 1 == galleryPresenter.getImagesNumber() {
-            galleryPresenter.fetchGalleryItems()
+        let count = galleryPresenter.getImagesNumber()
+        if indexPath.row + 1 == count && self.isFirstLoaded {
+            print("Cell is visible")
         }
     }
 }

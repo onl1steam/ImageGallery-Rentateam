@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ImageCollectionViewCellProtocol {
-    func setLabel(_ text: String)
+    func setLabel(_ text: String?)
     func setImage(imageData: Data)
     func setDataTask(_ dataTask: URLSessionDataTask?)
 }
@@ -37,8 +37,6 @@ class ImageCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    // MARK: - Initializers
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addCellSubviews()
@@ -49,15 +47,11 @@ class ImageCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - UICollectionViewCell
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         dataTask?.cancel()
         imageView.image = UIImage(named: "placeholder")
     }
-    
-    // MARK: Private Methods
     
     private func addCellSubviews() {
         contentView.addSubview(imageView)
@@ -106,7 +100,11 @@ extension ImageCollectionViewCell: ImageCollectionViewCellProtocol {
         }
     }
     
-    func setLabel(_ text: String) {
-        titleLabel.text = text
+    func setLabel(_ text: String?) {
+        guard let title = text else {
+            titleLabel.text = "У изображения отсутствует описание"
+            return
+        }
+        titleLabel.text = title
     }
 }

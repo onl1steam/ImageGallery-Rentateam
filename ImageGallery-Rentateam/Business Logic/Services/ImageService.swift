@@ -13,12 +13,8 @@ protocol ImageServiceProtocol {
 
 final class ImageService: ImageServiceProtocol {
     
-    // MARK: - Public properties
-    
     let session = URLSession(configuration: .default)
     var dataTask: URLSessionDataTask?
-    
-    // MARK: - ImageServiceProtocol Realization
     
     func fetchImage(urlString: String, completion: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask? {
         guard let url = URL(string: urlString) else { return nil }

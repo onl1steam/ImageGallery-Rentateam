@@ -74,7 +74,7 @@ class ImageDetailsViewController: UIViewController {
     private func setInitialInfo() {
         titleLabel.text = galleryItem.imageDescription
         dateLabel.text = "Время загрузки: \(galleryItem.loadingDate.getFormatted())"
-        guard let imageData = imageCacheService.loadImage(key: galleryItem.id) else { return }
+        guard let imageData = imageCacheService.loadImageFromCache(key: galleryItem.id) else { return }
         DispatchQueue.global().async { [weak self] in
             let image = UIImage(data: imageData)
             DispatchQueue.main.async {

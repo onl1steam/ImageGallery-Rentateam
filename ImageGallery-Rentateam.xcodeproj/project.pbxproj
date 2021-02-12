@@ -21,7 +21,8 @@
 		926B0D4D25D69A7E00951FB9 /* APISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D4C25D69A7E00951FB9 /* APISettings.swift */; };
 		926B0D5225D69B2300951FB9 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D5125D69B2300951FB9 /* GalleryItem.swift */; };
 		926B0D5625D6B01900951FB9 /* GalleryStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D5525D6B01900951FB9 /* GalleryStoreService.swift */; };
-		926B0D5925D6B52A00951FB9 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D5825D6B52A00951FB9 /* ImageCacheService.swift */; };
+		926B0D5925D6B52A00951FB9 /* ImageStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D5825D6B52A00951FB9 /* ImageStoreService.swift */; };
+		926B0D6425D6E45400951FB9 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926B0D6325D6E45400951FB9 /* ImageCacheService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +42,8 @@
 		926B0D4C25D69A7E00951FB9 /* APISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISettings.swift; sourceTree = "<group>"; };
 		926B0D5125D69B2300951FB9 /* GalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItem.swift; sourceTree = "<group>"; };
 		926B0D5525D6B01900951FB9 /* GalleryStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryStoreService.swift; sourceTree = "<group>"; };
-		926B0D5825D6B52A00951FB9 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
+		926B0D5825D6B52A00951FB9 /* ImageStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStoreService.swift; sourceTree = "<group>"; };
+		926B0D6325D6E45400951FB9 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +138,8 @@
 				926B0D3F25D56AF400951FB9 /* ImageService.swift */,
 				926B0D4225D56B2800951FB9 /* GalleryService.swift */,
 				926B0D5525D6B01900951FB9 /* GalleryStoreService.swift */,
-				926B0D5825D6B52A00951FB9 /* ImageCacheService.swift */,
+				926B0D5825D6B52A00951FB9 /* ImageStoreService.swift */,
+				926B0D6325D6E45400951FB9 /* ImageCacheService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -235,8 +238,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				926B0D6425D6E45400951FB9 /* ImageCacheService.swift in Sources */,
 				926B0D2E25D566F000951FB9 /* GalleryViewController.swift in Sources */,
-				926B0D5925D6B52A00951FB9 /* ImageCacheService.swift in Sources */,
+				926B0D5925D6B52A00951FB9 /* ImageStoreService.swift in Sources */,
 				926B0D4D25D69A7E00951FB9 /* APISettings.swift in Sources */,
 				926B0D0A25D55C4100951FB9 /* AppDelegate.swift in Sources */,
 				926B0D3225D5693F00951FB9 /* ImageCollectionViewCell.swift in Sources */,

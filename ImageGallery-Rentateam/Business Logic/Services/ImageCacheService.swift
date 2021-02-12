@@ -1,47 +1,37 @@
 //
-//  ImageCache.swift
+//  ImageCacheService.swift
 //  ImageGallery-Rentateam
 //
 //  Created by Рыжков Артем on 12.02.2021.
 //
 
-import UIKit
+import Foundation
 
 protocol ImageCacheServiceProtocol {
-    func loadImage(key: String) -> Data?
-    func cacheImage(key: String, imageData: Data)
+    func loadImageFromCache(key: String) -> Data?
+    func cacheImage(key: String, image: Data)
+    func deleteFromCache(key: String)
 }
 
 final class ImageCacheService: ImageCacheServiceProtocol {
     
-    // MARK: - Private Properties
-    
     private let imageCache = NSCache<NSString, NSData>()
     
-    // MARK: - Public methods
-    
-    func loadImage(key: String) -> Data? {
-        if let dir = try? FileManager.default.url(for: .documentDirectory,
-                                                  in: .userDomainMask,
-                                                  appropriateFor: nil,
-                                                  create: false),
-           let data = try? Data(contentsOf: dir.appendingPathComponent(key)) {
-            return data
-        }
-        return nil
+    func loadImageFromCache(key: String) -> Data? {
+        let imageKey = NSString(string: key)
+        guard let image = imageCache.object(forKey: imageKey) else { return nil }
+        let data = Data(referencing: image)
+        return data
     }
     
-    func cacheImage(key: String, imageData: Data) {
-        guard let directory = try? FileManager.default.url(for: .documentDirectory,
-                                                           in: .userDomainMask,
-                                                           appropriateFor: nil,
-                                                           create: false) as NSURL else {
-            return
-        }
-        do {
-            try imageData.write(to: directory.appendingPathComponent(key)!)
-        } catch {
-            print(error.localizedDescription)
-        }
+    func cacheImage(key: String, image: Data) {
+        let imageKey = NSString(string: key)
+        let imageData = image as NSData
+        imageCache.setObject(imageData, forKey: imageKey)
+    }
+    
+    func deleteFromCache(key: String) {
+        let imageKey = NSString(string: key)
+        imageCache.removeObject(forKey: imageKey)
     }
 }

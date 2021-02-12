@@ -17,7 +17,7 @@ struct GalleryItem: Codable {
     }
     
     let id: String
-    let imageDescription: String
+    let imageDescription: String?
     let imageUrl: String
     let loadingDate: Date
 }

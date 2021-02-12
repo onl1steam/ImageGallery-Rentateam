@@ -7,7 +7,11 @@
 
 import UIKit
 
-class GalleryViewController: UIViewController {
+protocol GalleryViewControllerProtocol: NSObject {
+    func reloadCollection()
+}
+
+final class GalleryViewController: UIViewController {
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -25,14 +29,10 @@ class GalleryViewController: UIViewController {
         return collection
     }()
     
-    private let galleryService: GalleryServiceProtocol
-    private let imageService: ImageServiceProtocol
-    private var data: [GalleryResponse] = []
+    private let galleryPresenter: GalleryPresenterProtocol
     
-    init(galleryService: GalleryServiceProtocol = GalleryService(),
-         imageService: ImageServiceProtocol = ImageService()) {
-        self.galleryService = galleryService
-        self.imageService = imageService
+    init(galleryPresenter: GalleryPresenterProtocol = GalleryPresenter()) {
+        self.galleryPresenter = galleryPresenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -47,20 +47,10 @@ class GalleryViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        galleryPresenter.setDelegate(self)
+        
         setupCollectionViewPosition()
-        galleryService.fetchGallery(page: 1, imagesPerPage: 10) { [weak self] response in
-            switch response {
-            case .success(let json):
-                do {
-                    self?.data = try JSONDecoder().decode([GalleryResponse].self, from: json)
-                    self?.collectionView.reloadData()
-                } catch let error {
-                    print("Error: \(error.localizedDescription)")
-                }
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
-            }
-        }
+        galleryPresenter.fetchGalleryItems()
     }
     
     private func setupCollectionViewPosition() {
@@ -75,12 +65,18 @@ class GalleryViewController: UIViewController {
     }
 }
 
+extension GalleryViewController: GalleryViewControllerProtocol {
+    func reloadCollection() {
+        collectionView.reloadData()
+    }
+}
+
 extension GalleryViewController: UICollectionViewDelegate {}
 
 extension GalleryViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return galleryPresenter.getImagesNumber()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -88,22 +84,7 @@ extension GalleryViewController: UICollectionViewDataSource {
                                                             for: indexPath) as? ImageCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
-        cell.setLabel(data[indexPath.row].imageDescription)
-        cell.dataTask = imageService.fetchImage(urlString: data[indexPath.row].urls.regular, completion: { response in
-                switch response {
-                case .success(let data):
-                    let image = UIImage(data: data)
-                    DispatchQueue.main.async {
-                        cell.setImage(image)
-                    }
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        print("Image loading failed: \(error.localizedDescription)")
-                    }
-                }
-            }
-        )
+        galleryPresenter.setupCellInfo(cell: cell, row: indexPath.row)
         return cell
     }
 }

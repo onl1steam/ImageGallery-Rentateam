@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol ImageCollectionViewCellProtocol {
+    func setLabel(_ text: String)
+    func setImage(imageData: Data)
+    func setDataTask(_ dataTask: URLSessionDataTask?)
+}
+
 class ImageCollectionViewCell: UICollectionViewCell {
     
     private enum CellConstraints {
@@ -15,7 +21,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
     
     static let reuseIdentifier = String(describing: ImageCollectionViewCell.self)
-    var dataTask: URLSessionDataTask?
+    private var dataTask: URLSessionDataTask?
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -50,16 +56,6 @@ class ImageCollectionViewCell: UICollectionViewCell {
         dataTask?.cancel()
     }
     
-    // MARK: Public Methods
-    
-    func setImage(_ image: UIImage?) {
-        imageView.image = image
-    }
-    
-    func setLabel(_ text: String) {
-        titleLabel.text = text
-    }
-    
     // MARK: Private Methods
     
     private func addCellSubviews() {
@@ -91,5 +87,25 @@ class ImageCollectionViewCell: UICollectionViewCell {
             titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
         ])
+    }
+}
+
+extension ImageCollectionViewCell: ImageCollectionViewCellProtocol {
+    
+    func setDataTask(_ dataTask: URLSessionDataTask?) {
+        self.dataTask = dataTask
+    }
+    
+    func setImage(imageData: Data) {
+        DispatchQueue.global().async { [weak self] in
+            let image = UIImage(data: imageData)
+            DispatchQueue.main.async {
+                self?.imageView.image = image
+            }
+        }
+    }
+    
+    func setLabel(_ text: String) {
+        titleLabel.text = text
     }
 }
